@@ -15,7 +15,7 @@ ElasticSearchで他システムログ含めて可視化するシステムです�
   - WindowsAPI(EventLog)
 
 ## Visuals
-システムの実行イメージです。
+システムの実行イメージです。<br>
 <img width="300px" alt="suggest" src="README_images/script_run.jpg">
 <img width="300px" alt="stats" src="README_images/kibana.jpg">
 
