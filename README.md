@@ -61,6 +61,22 @@ sudo sysctl -w vm.max_map_count=262144
 ./winlogbeat -c winlogbeat.yml -e
 ``` 
 
+サービスとして実行する場合、以下の手順を実施してください。
+```
+Start-Service winlogbeat
+```
+
+サービス停止時は下記コマンドで停止できます。
+```
+stop-Service winlogbeat
+```
+
+※Execution Policyエラーについて<br>
+実行ポリシー(Execution Policy)でエラーが発生した場合は、一時的にポリシーを変更しスクリプトを実行する必要があります。
+```
+PowerShell.exe -ExecutionPolicy UnRestricted -File .\install-service-winlogbeat.ps1
+```
+
 5. 適当なワークディレクトリを作成し、リポジトリ内のdoroka.exeを配置してください。
 
 ## Usage
