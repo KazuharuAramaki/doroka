@@ -1,4 +1,4 @@
-## doroka
+## DoRoKa
 このリポジトリはシステムdorokaのソースコードです。
 
 ## Description
@@ -10,7 +10,7 @@ ElasticSearchで他システムログ含めて可視化するシステムです�
   - ElasticSearch
   - kibana
   - winlogbeat
-  - sismon ※相関分析用の他ログとして採用しています。システムの主旨から必須ではありません。
+  - sysmon ※相関分析用の他ログとして採用しています。システムの主旨から必須ではありません。
   - .NET Framework, socket
   - WindowsAPI(EventLog)
 
@@ -29,11 +29,11 @@ ElasticSearchで他システムログ含めて可視化するシステムです�
 
 ### サーバー側の準備
 1. Dockerをインストールします。以下公式ドキュメントにしたがってインストールしてください。
-<br>[Ubuntuにdockerにインストール](https://docs.docker.jp/desktop/install/ubuntu.html)
+<br>[Ubuntuにdockerをインストール](https://docs.docker.jp/desktop/install/ubuntu.html)
 
-1. サーバーの適当なワークディレクトリを作成し、レポジトリ上の`docker`内にある`docker-compose.yml`と`elasticsearch.yml`を配置します。
+2. サーバーの適当なワークディレクトリを作成し、レポジトリ上の`docker`内にある`docker-compose.yml`と`elasticsearch.yml`を配置します。
 
-1. ワークディレクトリ上で、以下コマンドでdockerコンテナを起動します。
+3. ワークディレクトリ上で、以下コマンドでdockerコンテナを起動します。
 ```
 sudo docker compose up -d
 ```
@@ -42,26 +42,26 @@ sudo docker compose up -d
 sudo sysctl -w vm.max_map_count=262144
 ```
 
-1. ブラウザから `http://{サーバーアドレス}:5601` にアクセスし、kibanaのメイン画面が表示されれば正常です。
+4. ブラウザから `http://{サーバーアドレス}:5601` にアクセスし、kibanaのメイン画面が表示されれば正常です。
 
 ### 端末側の準備
 1. winlogbeatを以下公式ドキュメントにしたがってインストールしてください。
 <br>[winlogbeat_v8.4.2](https://www.elastic.co/guide/en/beats/winlogbeat/current/winlogbeat-installation-configuration.html)
 
-1. インストールしたwinlogbeatのディレクトリ内にある`winlogbeat.yml`をリポジトリの`winlogbeat/winlogbeat.yml`に置き換えてください。
+2. インストールしたwinlogbeatのディレクトリ内にある`winlogbeat.yml`をリポジトリの`winlogbeat/winlogbeat.yml`に置き換えてください。
 
-1. `winlogbeat.yml`の115行目について、`{server address}`をサーバ側のアドレスに変更してください。
+3. `winlogbeat.yml`の115行目について、`{server address}`をサーバ側のアドレスに変更してください。
 ```
   hosts: ["{server address}:9200"]
 ```
 
-1. インストールしたwinlogbeatのディレクトリ上で、以下コマンドで、winlogbeatを管理者権限で実行してください。
+4. インストールしたwinlogbeatのディレクトリ上で、以下コマンドで、winlogbeatを管理者権限で実行してください。
 <br>eventlogをサーバ側へ定期的に送信しているログが表示されれば正常です。
 ```
 ./winlogbeat -c winlogbeat.yml -e
 ``` 
 
-1. 適当なワークディレクトリを作成し、リポジトリ内のdoroka.exeを配置してください。
+5. 適当なワークディレクトリを作成し、リポジトリ内のdoroka.exeを配置してください。
 
 ## Usage
 ### 端末側でEventLogを生成し、送信
